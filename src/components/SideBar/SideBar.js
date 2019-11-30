@@ -1,13 +1,24 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import styles from './SideBar.module.css';
 
 const SideBar = (props) => {
-
-  const [value, setValue] = React.useState([2000, 10000]);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  // state
+  const [airflowValue, setAirflowValue] = React.useState([2000, 10000]);
+  const handleAirflowChange = (event, newValue) => {
+    setAirflowValue(newValue);
+  };
+  const [maxPowerValue, setMaxPowerValue] = React.useState([0, 100]);
+  const handleMaxPowerChange = (event, newValue) => {
+    setMaxPowerValue(newValue);
+  };
+  const [maxSoundValue, setMaxSoundValue] = React.useState([0, 100]);
+  const handleMaxSoundChange = (event, newValue) => {
+    setMaxSoundValue(newValue);
+  };
+  const [sweepDiameterValue, setSweepDiameterValue] = React.useState([0, 100]);
+  const handleSweepDiameterChange = (event, newValue) => {
+    setSweepDiameterValue(newValue);
   };
 
   return (
@@ -28,24 +39,60 @@ const SideBar = (props) => {
       <div>
         <div>Airflow (CFM)</div>
         <div className={styles.para}>
-          <input size='1' value={value[0]} onChange={(event)=>setValue([+event.target.value,value[1]])} />
+          <input size='1' value={airflowValue[0]} onChange={(event)=>setAirflowValue([+event.target.value,airflowValue[1]])} />
           <Slider
-            value={value}
+            value={airflowValue}
             min={2000}
             max={10000}
-            onChange={handleChange}
+            onChange={handleAirflowChange}
             valueLabelDisplay="auto"
             aria-labelledby="range-slider"
             getAriaValueText={valuetext}
           />
-          <input size='1' value={value[1]} onChange={(event)=>setValue([value[0],+event.target.value])} />
+          <input size='1' value={airflowValue[1]} onChange={(event)=>setAirflowValue([airflowValue[0],+event.target.value])} />
         </div>
         <div>Max power (W)</div>
-        <div></div>
+        <div className={styles.para}>
+          <input size='1' value={maxPowerValue[0]} onChange={(event)=>setMaxPowerValue([+event.target.value,maxPowerValue[1]])} />
+          <Slider
+            value={maxPowerValue}
+            min={0}
+            max={100}
+            onChange={handleMaxPowerChange}
+            valueLabelDisplay="auto"
+            aria-labelledby="range-slider"
+            getAriaValueText={valuetext}
+          />
+          <input size='1' value={maxPowerValue[1]} onChange={(event)=>setMaxPowerValue([maxPowerValue[0],+event.target.value])} />
+        </div>
         <div>Sound at max speed (dBA)</div>
-        <div></div>
+        <div className={styles.para}>
+          <input size='1' value={maxSoundValue[0]} onChange={(event)=>setMaxSoundValue([+event.target.value,maxSoundValue[1]])} />
+          <Slider
+            value={maxSoundValue}
+            min={0}
+            max={100}
+            onChange={handleMaxSoundChange}
+            valueLabelDisplay="auto"
+            aria-labelledby="range-slider"
+            getAriaValueText={valuetext}
+          />
+          <input size='1' value={maxSoundValue[1]} onChange={(event)=>setMaxSoundValue([maxSoundValue[0],+event.target.value])} />
+        </div>
         <div>Fan sweep diameter (in)</div>
-        <div></div>
+        <div className={styles.para}>
+          <input size='1' value={sweepDiameterValue[0]} onChange={(event)=>setSweepDiameterValue([+event.target.value,sweepDiameterValue[1]])} />
+          <Slider
+            value={sweepDiameterValue}
+            min={0}
+            max={100}
+            onChange={handleSweepDiameterChange}
+            valueLabelDisplay="auto"
+            aria-labelledby="range-slider"
+            getAriaValueText={valuetext}
+          />
+          <input size='1' value={sweepDiameterValue[1]} onChange={(event)=>setSweepDiameterValue([sweepDiameterValue[0],+event.target.value])} />
+        </div>
         <div></div>
         <div></div>
         <div></div>
@@ -57,12 +104,6 @@ const SideBar = (props) => {
 export default SideBar;
 
 // slider
-const useStyles = makeStyles({
-  root: {
-    width: 300,
-  },
-});
-
 function valuetext(value) {
   return `${value}`;
 }
