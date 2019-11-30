@@ -20,6 +20,14 @@ const SideBar = (props) => {
   const handleSweepDiameterChange = (event, newValue) => {
     setSweepDiameterValue(newValue);
   };
+  const [firmValue, setFirmValue] = React.useState([0, 10]);
+  const handleFirmChange = (event, newValue) => {
+    setFirmValue(newValue);
+  };
+  const [globalValue, setGlobalValue] = React.useState([0, 1500]);
+  const handleGlobalChange = (event, newValue) => {
+    setGlobalValue(newValue);
+  };
 
   return (
     <div className={styles.SideBar}>
@@ -28,6 +36,7 @@ const SideBar = (props) => {
         <button>save</button>
         <button>clear</button>
       </div>
+
       <div className={styles.title}>Product Type</div>
       <div className={styles.para}>
         <div>Model year:</div>
@@ -35,6 +44,7 @@ const SideBar = (props) => {
         {'-'}
         <input size='1' />
       </div>
+
       <div className={styles.title}>Technical Specifications</div>
       <div>
         <div>Airflow (CFM)</div>
@@ -93,10 +103,42 @@ const SideBar = (props) => {
           />
           <input size='1' value={sweepDiameterValue[1]} onChange={(event)=>setSweepDiameterValue([sweepDiameterValue[0],+event.target.value])} />
         </div>
-        <div></div>
-        <div></div>
-        <div></div>
       </div>
+
+      <div className={styles.title}>Past Selections</div>
+      <div>
+        <div>Firm</div>
+        <div className={styles.para}>
+          <input size='1' value={firmValue[0]} onChange={(event)=>setFirmValue([+event.target.value,firmValue[1]])} />
+          <Slider
+            value={firmValue}
+            min={0}
+            max={10}
+            onChange={handleFirmChange}
+            valueLabelDisplay="auto"
+            aria-labelledby="range-slider"
+            getAriaValueText={valuetext}
+          />
+          <input size='1' value={firmValue[1]} onChange={(event)=>setFirmValue([firmValue[0],+event.target.value])} />
+        </div>
+        <div>Global</div>
+        <div className={styles.para}>
+          <input size='1' value={globalValue[0]} onChange={(event)=>setGlobalValue([+event.target.value,globalValue[1]])} />
+          <Slider
+            value={globalValue}
+            min={0}
+            max={1500}
+            onChange={handleGlobalChange}
+            valueLabelDisplay="auto"
+            aria-labelledby="range-slider"
+            getAriaValueText={valuetext}
+          />
+          <input size='1' value={globalValue[1]} onChange={(event)=>setGlobalValue([globalValue[0],+event.target.value])} />
+        </div>
+      </div>
+
+      <div className={styles.title}>Advance Search</div>
+      <div><button>Find fans</button></div>
     </div>
   );
 }
