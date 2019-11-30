@@ -3,6 +3,8 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
 
+import styles from './LineSearch.module.css';
+
 class LineSearch extends Component {
   state = {
     productLines: []
@@ -25,21 +27,19 @@ class LineSearch extends Component {
 
   render() {
     return (
-      <>
+      <div className={styles.LineSearch}>
         <p>joole pic</p>
         <p>Building Product Selection Platform</p>
         <Autocomplete
           id="line-search"
-          ref="line-search"
           options={this.state.productLines}
           getOptionLabel={option => option['productLineName']}
-          style={{ width: 300 }}
           renderInput={params => (
             <TextField {...params} label="search..." variant="outlined" fullWidth />
           )}
         />
         <button onClick={() => console.log(document.getElementById('line-search').value)}>show</button>
-      </>
+      </div>
     );
   }
 

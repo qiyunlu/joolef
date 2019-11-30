@@ -1,0 +1,21 @@
+.HeadBar {
+    background-color: lightblue;
+    height: 98px;
+    text-align: center;
+    border-bottom: solid 2px lightgray;
+}
+
+.left {
+    float: left;
+    display: block;
+    margin-top: 40px;
+}
+.right {
+    float: right;
+    display: block;
+    margin-top: 40px;
+}
+.middle {
+    display: inline-block;
+    margin-top: 40px;
+}
