@@ -7,7 +7,8 @@ import styles from './LineSearch.module.css';
 
 class LineSearch extends Component {
   state = {
-    productLines: []
+    productLines: [],
+    chosen: 'HVAC Fans'
   };
 
   componentDidMount() {
