@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import styles from './LineSearch.module.css';
 
 class LineSearch extends Component {
   state = {
     productLines: [],
-    chosen: 'HVAC Fans'
+    chosen: 1
   };
 
   componentDidMount() {
@@ -16,9 +17,11 @@ class LineSearch extends Component {
       .then(response => {
         const datas = response['data']['_embedded']['productLines'];
         const lines = [];
-        for(let data of datas) {
-          lines.push({'productLineId': + data['_links']['self']['href'].replace("http://localhost:8080/api/productLines/", ""),
-                      'productLineName': data['productLineName']});
+        for (let data of datas) {
+          lines.push({
+            'productLineId': + data['_links']['self']['href'].replace("http://localhost:8080/api/productLines/", ""),
+            'productLineName': data['productLineName']
+          });
         }
         this.setState({
           productLines: lines
@@ -29,8 +32,6 @@ class LineSearch extends Component {
   render() {
     return (
       <div className={styles.LineSearch}>
-        <p>joole pic</p>
-        <p>Building Product Selection Platform</p>
         <Autocomplete
           id="line-search"
           options={this.state.productLines}
@@ -39,7 +40,9 @@ class LineSearch extends Component {
             <TextField {...params} label="search..." variant="outlined" fullWidth />
           )}
         />
-        <button onClick={() => console.log(document.getElementById('line-search').value)}>show</button>
+        <Link to={'/productPage/'+this.state.chosen}>
+          <button>Search</button>
+        </Link>
       </div>
     );
   }

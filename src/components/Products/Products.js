@@ -29,15 +29,16 @@ const Products = (props) => {
   }
 
   return (
+    
     <div className={styles.Products}>
       <div>Mechanical > HVAC Fans</div>
-      <GridList cellHeight={400} cols={3}>
+      <GridList cellHeight={450} cols={4}>
         {props.products.map(product => (
           <GridListTile key={product.productId} cols={1}>
             <Card className={styles.card}>
               <div style={{ fontSize: 10 }}>{"Verified " + product.productModelVerifiedTime}</div>
               <CardMedia
-                style={{ paddingTop: '22.22%' }}
+                style={{ paddingTop: '30%' }}
                 image={product.productPicture.replace('/public', '.')}
               />
               <CardContent>

@@ -9,9 +9,10 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="App">
-        <Route path='/login' render={() => <p>Login here</p>} />
-        <Route path='/lineSearch' render={() => <LineSearch />} />
-        <Route path='/productPage' render={() => <ProductPage />} />
+        <Route path='/login' component={<p>Login here</p>} />
+        <Route path='/lineSearch' component={LineSearch} />
+        <Route path='/productPage/:productLineFk' exact component={ProductPage} />
+        <Route path='/productPage' exact component={ProductPage} />
       </div>
     </BrowserRouter>
   );
