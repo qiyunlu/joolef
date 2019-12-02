@@ -6,7 +6,7 @@ import FindFans from '../FindFans/FindFans';
 
 const SideBar = (props) => {
   // state
-  const [modelYearValue, setModelYearValue] = React.useState([0, 0]);
+  const [modelYearValue, setModelYearValue] = React.useState([1970, 2019]);
   const [airflowValue, setAirflowValue] = React.useState([2000, 10000]);
   const handleAirflowChange = (event, newValue) => {
     setAirflowValue(newValue);
@@ -32,69 +32,15 @@ const SideBar = (props) => {
     setGlobalValue(newValue);
   };
 
-  // function
-  const updateSearchParas = () => {
-    let newParas = {
-      useType: '',
-      application: '',
-      mountingLocation: '',
-      accessories: '',
-      modelYearMin: modelYearValue[0],
-      modelYearMax: modelYearValue[1],
-      airflowMin: airflowValue[0],
-      airflowMax: airflowValue[1],
-      maxPowerMin: maxPowerValue[0],
-      maxPowerMax: maxPowerValue[1],
-      maxSoundMin: maxSoundValue[0],
-      maxSoundMax: maxSoundValue[1],
-      sweepDiameterMin: sweepDiameterValue[0],
-      sweepDiameterMax: sweepDiameterValue[1],
-      heightMin: '',
-      heightMax: '',
-      firmMin: firmValue[0],
-      firmMax: firmValue[1],
-      globalMin: globalValue[0],
-      globalMax: globalValue[1],
-      brand: ''
-    };
-    console.log(newParas);
-    props.setState({searchParas: {...newParas}});
-  }
-
-  const clearSearchParas = () => {
-    let initParas = {
-      useType: '',
-      application: '',
-      mountingLocation: '',
-      accessories: '',
-      modelYearMin: '',
-      modelYearMax: '',
-      airflowMin: '',
-      airflowMax: '',
-      maxPowerMin: '',
-      maxPowerMax: '',
-      maxSoundMin: '',
-      maxSoundMax: '',
-      sweepDiameterMin: '',
-      sweepDiameterMax: '',
-      heightMin: '',
-      heightMax: '',
-      firmMin: '',
-      firmMax: '',
-      globalMin: '',
-      globalMax: '',
-      brand: ''
-    };
-    props.setState({searchParas: initParas});
-  }
-
 
   return (
     <div className={styles.SideBar}>
       <div style={{ display: 'flex' }}>
         <p>Search: </p>
-        <button onClick={updateSearchParas}>save</button>
-        <button onClick={clearSearchParas}>clear</button>
+        <button onClick={() => props.updateSearchParas('','','','',modelYearValue,airflowValue,maxPowerValue,maxSoundValue,
+            sweepDiameterValue,['',''],firmValue,globalValue,'')}
+        >save</button>
+        <button onClick={() => props.clearSearchParas(props.setState)}>clear</button>
       </div>
 
       <div className={styles.title}>Product Type</div>
