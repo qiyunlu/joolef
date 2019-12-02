@@ -210,7 +210,6 @@ class ProductPage extends Component {
     // start filtering
     var pts = [...this.state.products];
     var searchParas = {...this.state.searchParas};
-    console.log(pts);
     pts = this.modelYearFilter(pts, searchParas.modelYearMin, searchParas.modelYearMax);
     pts = this.airflowFilter(pts, searchParas.airflowMin, searchParas.airflowMax);
     pts = this.maxPowerFilter(pts, searchParas.maxPowerMin, searchParas.maxPowerMax);
@@ -218,7 +217,6 @@ class ProductPage extends Component {
     pts = this.sweepDiameterFilter(pts, searchParas.sweepDiameterMin, searchParas.sweepDiameterMax);
     pts = this.firmFilter(pts, searchParas.firmMin, searchParas.firmMax);
     pts = this.globalFilter(pts, searchParas.globalMin, searchParas.globalMax);
-    console.log(pts);
     return (
       <div>
         <HeadBar />

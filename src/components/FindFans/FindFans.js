@@ -3,29 +3,27 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-// import RadioButton from './RadioButton';
+import Radio from '@material-ui/core/Radio';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
 //for dialog
 function FindFans() {
   const [open, setOpen] = React.useState(false);
-  const [fullWidth, setFullWidth] = React.useState(true);
-  const [maxWidth, setMaxWidth] = React.useState('sm');
 
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
 
-  // const handleMaxWidthChange = event => {
-  //   setMaxWidth(event.target.value);
-  // };
+  // for radio button
+  const [selectedValue, setSelectedValue] = React.useState('a');
 
-  // const handleFullWidthChange = event => {
-  //   setFullWidth(event.target.checked);
-  // };
+  const handleChange = event => {
+    setSelectedValue(event.target.value);
+  };
 
 
   return (
@@ -46,8 +44,34 @@ function FindFans() {
           <div className="typeheader" style={{ backgroundColor: "lightgrey" }}>
             <span>Type</span>
           </div>
-          <div className="type_content" style={{ marginTop: "5px" }}></div>
-          <div style={{display:'flex'}}>
+          <div style={{ display: 'flex', marginTop: '10px' }}>
+            <div style={{ color: "black", marginRight: "20%", marginTop: "1.5%" }}>Use Type</div>
+            <Radio
+              checked={selectedValue === 'a'}
+              onChange={handleChange}
+              value="a"
+              color="default"
+              name="radio-button-demo"
+              inputProps={{ 'aria-label': 'A' }}
+            /><span style={{ marginTop: "1.5%" }}>Commercial</span>
+            <Radio
+              checked={selectedValue === 'b'}
+              onChange={handleChange}
+              value="b"
+              color="default"
+              name="radio-button-demo"
+              inputProps={{ 'aria-label': 'B' }}
+            /><span style={{ marginTop: "1.5%" }}>Industrial</span>
+            <Radio
+              checked={selectedValue === 'c'}
+              onChange={handleChange}
+              value="c"
+              color="default"
+              name="radio-button-demo"
+              inputProps={{ 'aria-label': 'C' }}
+            /><span style={{ marginTop: "1.5%" }}>Residential</span>
+          </div>
+          <div style={{ display: 'flex', marginTop: '10px' }}>
             <div style={{ color: "black", marginRight: "20%" }}>Model year</div>
             <input type="number" id="tentacles" name="tentacles"
               min="2000" max="2200" />
