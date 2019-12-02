@@ -1,0 +1,7 @@
+.oneLine {
+    display: flex;
+}
+
+.grey {
+    background-color: lightgray;
+}

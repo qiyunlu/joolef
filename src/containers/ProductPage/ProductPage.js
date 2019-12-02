@@ -15,41 +15,54 @@ class ProductPage extends Component {
       application: '',
       mountingLocation: '',
       accessories: '',
-      modelVerifiedTime: '',
-      airflow: '',
-      maxPower: '',
-      maxSound: '',
-      sweepDiameter: '',
-      height: '',
-      firm: '',
-      global: '',
+      modelYearMin: '',
+      modelYearMax: '',
+      airflowMin: '',
+      airflowMax: '',
+      maxPowerMin: '',
+      maxPowerMax: '',
+      maxSoundMin: '',
+      maxSoundMax: '',
+      sweepDiameterMin: '',
+      sweepDiameterMax: '',
+      heightMin: '',
+      heightMax: '',
+      firmMin: '',
+      firmMax: '',
+      globalMin: '',
+      globalMax: '',
       brand: ''
     }
-  };
+  }
 
   componentDidMount() {
-    console.log(this.props)
+
     let URL = 'http://localhost:8080/api/products';
-    if (this.props.match.params.productLineFk) {
-      URL += '/search/findByProductLineFk?theFk='+this.props.match.params.productLineFk;
+    let productLineFk = this.props.match.params.productLineFk;
+    if (productLineFk) {
+      URL += '/search/findByProductLineFk?theFk=' + productLineFk;
+    } else {
+      productLineFk = '';
     }
 
     axios.get(URL)
       .then(response => {
+
         const datas = response['data']['_embedded']['products'];
-        const pts = [];
-        for (let data of datas) {
-          let pt = { ...data };
-          pt['productId'] = + data['_links']['self']['href'].replace("http://localhost:8080/api/products/", "");
-          pts.push(pt);
+        if (datas) {
+          let pts = [];
+          for (let data of datas) {
+            let pt = { ...data };
+            pt['productId'] = + data['_links']['self']['href'].replace("http://localhost:8080/api/products/", "");
+            pts.push(pt);
+          }
+          this.setState({
+            products: pts,
+            productLineFk: productLineFk
+          })
+
         }
-        this.setState({
-          products: pts,
-          productLineFk: ''
-        });
       });
-
-
   }
 
   render() {

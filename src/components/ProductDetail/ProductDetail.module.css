@@ -1,0 +1,30 @@
+.detailTable {
+    border: 1px solid lightgrey;
+    overflow: auto;
+    position: absolute;
+    bottom: 0;
+    top: 212px;
+    left: 0px;
+    right: 0;
+}
+
+.title {
+    color: rgb(50, 50, 255);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.subTitle {
+    border-top: 2px solid darkgray;
+    border-bottom: 2px solid darkgray;
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+.oneLine {
+    display: flex;
+}
+
+.grey {
+    background-color: lightgray;
+}
