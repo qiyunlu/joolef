@@ -2,8 +2,11 @@ import React from 'react';
 import Slider from '@material-ui/core/Slider';
 import styles from './SideBar.module.css';
 
+import FindFans from '../FindFans/FindFans';
+
 const SideBar = (props) => {
   // state
+  const [modelYearValue, setModelYearValue] = React.useState([0, 0]);
   const [airflowValue, setAirflowValue] = React.useState([2000, 10000]);
   const handleAirflowChange = (event, newValue) => {
     setAirflowValue(newValue);
@@ -29,20 +32,77 @@ const SideBar = (props) => {
     setGlobalValue(newValue);
   };
 
+  // function
+  const updateSearchParas = () => {
+    let newParas = {
+      useType: '',
+      application: '',
+      mountingLocation: '',
+      accessories: '',
+      modelYearMin: modelYearValue[0],
+      modelYearMax: modelYearValue[1],
+      airflowMin: airflowValue[0],
+      airflowMax: airflowValue[1],
+      maxPowerMin: maxPowerValue[0],
+      maxPowerMax: maxPowerValue[1],
+      maxSoundMin: maxSoundValue[0],
+      maxSoundMax: maxSoundValue[1],
+      sweepDiameterMin: sweepDiameterValue[0],
+      sweepDiameterMax: sweepDiameterValue[1],
+      heightMin: '',
+      heightMax: '',
+      firmMin: firmValue[0],
+      firmMax: firmValue[1],
+      globalMin: globalValue[0],
+      globalMax: globalValue[1],
+      brand: ''
+    };
+    console.log(newParas);
+    props.setState({searchParas: {...newParas}});
+  }
+
+  const clearSearchParas = () => {
+    let initParas = {
+      useType: '',
+      application: '',
+      mountingLocation: '',
+      accessories: '',
+      modelYearMin: '',
+      modelYearMax: '',
+      airflowMin: '',
+      airflowMax: '',
+      maxPowerMin: '',
+      maxPowerMax: '',
+      maxSoundMin: '',
+      maxSoundMax: '',
+      sweepDiameterMin: '',
+      sweepDiameterMax: '',
+      heightMin: '',
+      heightMax: '',
+      firmMin: '',
+      firmMax: '',
+      globalMin: '',
+      globalMax: '',
+      brand: ''
+    };
+    props.setState({searchParas: initParas});
+  }
+
+
   return (
     <div className={styles.SideBar}>
       <div style={{ display: 'flex' }}>
         <p>Search: </p>
-        <button>save</button>
-        <button>clear</button>
+        <button onClick={updateSearchParas}>save</button>
+        <button onClick={clearSearchParas}>clear</button>
       </div>
 
       <div className={styles.title}>Product Type</div>
       <div className={styles.para}>
         <div>Model year:</div>
-        <input size='1' />
+        <input size='1' value={modelYearValue[0]} onChange={(event)=>setModelYearValue([+event.target.value,modelYearValue[1]])}/>
         {'-'}
-        <input size='1' />
+        <input size='1' value={modelYearValue[1]} onChange={(event)=>setModelYearValue([modelYearValue[0],+event.target.value])}/>
       </div>
 
       <div className={styles.title}>Technical Specifications</div>
@@ -138,7 +198,8 @@ const SideBar = (props) => {
       </div>
 
       <div className={styles.title}>Advance Search</div>
-      <div><button>Find fans</button></div>
+      <div><FindFans /></div>
+      
     </div>
   );
 }
