@@ -14,6 +14,7 @@ class SummaryPage extends Component {
 
     let URL = 'http://localhost:8080/api/products';
     let productFk = this.props.match.params.productId;
+    console.log(this.props);
     if(productFk) {
       URL += '/'+productFk;
     } else {

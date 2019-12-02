@@ -6,19 +6,21 @@
     top: 212px;
     left: 0px;
     right: 0;
+    padding: 30px;
+    padding-top: 0;
 }
 
 .title {
     color: rgb(50, 50, 255);
     font-size: 20px;
     font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .subTitle {
     border-top: 2px solid darkgray;
     border-bottom: 2px solid darkgray;
-    margin-right: 30px;
-    margin-left: 30px;
 }
 
 .oneLine {
@@ -27,4 +29,11 @@
 
 .grey {
     background-color: lightgray;
+}
+
+.fileName {
+    margin-top: 30px;
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: bold;
 }
