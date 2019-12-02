@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from '../../Interceptor/Interceptor';
 
 import SideBar from '../../components/SideBar/SideBar';
 import HeadBar from '../../components/HeadBar/HeadBar';
@@ -187,16 +187,6 @@ class ProductPage extends Component {
             pt['productId'] = + data['_links']['self']['href'].replace("http://localhost:8080/api/products/", "");
             pts.push(pt);
           }
-          // // start filtering
-          // console.log(pts);
-          // pts = this.modelYearFilter(pts, this.state.searchParas.modelYearMin, this.state.searchParas.modelYearMax);
-          // pts = this.airflowFilter(pts, this.state.searchParas.airflowMin, this.state.searchParas.airflowMax);
-          // pts = this.maxPowerFilter(pts, this.state.searchParas.maxPowerMin, this.state.searchParas.maxPowerMax);
-          // pts = this.maxSoundFilter(pts, this.state.searchParas.maxSoundMin, this.state.searchParas.maxSoundMax);
-          // pts = this.sweepDiameterFilter(pts, this.state.searchParas.sweepDiameterMin, this.state.searchParas.sweepDiameterMax);
-          // pts = this.firmFilter(pts, this.state.searchParas.firmMin, this.state.searchParas.firmMax);
-          // pts = this.globalFilter(pts, this.state.searchParas.globalMin, this.state.searchParas.globalMax);
-
           this.setState({
             products: pts,
             productLineFk: productLineFk
@@ -207,9 +197,10 @@ class ProductPage extends Component {
   }
 
   render() {
+
     // start filtering
     var pts = [...this.state.products];
-    var searchParas = {...this.state.searchParas};
+    var searchParas = { ...this.state.searchParas };
     pts = this.modelYearFilter(pts, searchParas.modelYearMin, searchParas.modelYearMax);
     pts = this.airflowFilter(pts, searchParas.airflowMin, searchParas.airflowMax);
     pts = this.maxPowerFilter(pts, searchParas.maxPowerMin, searchParas.maxPowerMax);

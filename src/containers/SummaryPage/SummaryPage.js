@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from '../../Interceptor/Interceptor';
 
 import HeadBar from '../../components/HeadBar/HeadBar';
 import ProductDetail from '../../components/ProductDetail/ProductDetail';

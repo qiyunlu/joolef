@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
+import axios from '../../Interceptor/Interceptor';
 import { Link } from 'react-router-dom';
 
 import styles from './LineSearch.module.css';
