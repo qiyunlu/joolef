@@ -6,6 +6,7 @@ import './App.css';
 import LineSearch from '../../containers/LineSearch/LineSearch';
 import ProductPage from '../../containers/ProductPage/ProductPage';
 import SummaryPage from '../../containers/SummaryPage/SummaryPage';
+import Compare from '../Compare/Compare';
 import Login from '../Login/Login';
 
 
@@ -43,7 +44,8 @@ const App = () => {
         <PrivateRoute path='/lineSearch' exact><LineSearch /></PrivateRoute>
         <Route path='/productPage/:productLineFk' exact component={ProductPage} />
         <Route path='/productPage' exact component={ProductPage} />
-        <Route path='/SummaryPage/:productId' exact component={SummaryPage} />
+        <Route path='/summaryPage/:productId' exact component={SummaryPage} />
+        <Route path='/compare' exact component={Compare} />
         <Route path='' render={() => <Redirect to="/login" />} />
       </div>
     </BrowserRouter>

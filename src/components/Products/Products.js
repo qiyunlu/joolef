@@ -14,15 +14,14 @@ import styles from './Products.module.css';
 
 const Products = (props) => {
 
-  const [checkedState, setCheckedState] = React.useState(new Set());
-  const handleCheckedChange = (productId) => {
-    if (checkedState.has(productId)) {
-      let _cs = new Set(checkedState);
-      _cs.delete(productId);
+  const [checkedState, setCheckedState] = React.useState({});
+  const handleCheckedChange = (productId, product) => {
+    let _cs = {...checkedState};
+    if (_cs.hasOwnProperty(productId)) {
+      delete _cs[productId];
       setCheckedState(_cs);
     } else {
-      let _cs = new Set(checkedState);
-      _cs.add(productId);
+      _cs[productId] = product;
       setCheckedState(_cs);
     }
   }
@@ -31,6 +30,13 @@ const Products = (props) => {
 
     <div className={styles.Products}>
       <div>Mechanical > HVAC Fans</div>
+      <Link to={location => (
+        {
+          ...location,
+          pathname: "/compare",
+          query: {...checkedState}
+        }
+      )}><button>Go Compare</button></Link>
       <GridList cellHeight={450} cols={4}>
         {props.products.map(product => (
 
@@ -63,7 +69,7 @@ const Products = (props) => {
               <CardActions disableSpacing>
                 <Checkbox
                   color="default"
-                  onChange={() => handleCheckedChange(product.productId)}
+                  onChange={() => handleCheckedChange(product.productId, product)}
                 />
                 <div>compare</div>
                 <Button variant="contained" color="primary">
