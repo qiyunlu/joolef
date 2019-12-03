@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from '../../Interceptor/Interceptor';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import styles from './LineSearch.module.css';
 
@@ -34,6 +34,7 @@ class LineSearch extends Component {
       <div className={styles.LineSearch}>
         <Autocomplete
           id="line-search"
+          style={{width:'50%', marginLeft:'20%'}}
           options={this.state.productLines}
           getOptionLabel={option => option['productLineName']}
           renderInput={params => (
@@ -41,7 +42,7 @@ class LineSearch extends Component {
           )}
         />
         <Link to={'/productPage/'+this.state.chosen}>
-          <button>Search</button>
+          <button style={{marginTop:'15px'}}>Search</button>
         </Link>
       </div>
     );
@@ -49,4 +50,4 @@ class LineSearch extends Component {
 
 }
 
-export default LineSearch;
+export default withRouter(LineSearch);

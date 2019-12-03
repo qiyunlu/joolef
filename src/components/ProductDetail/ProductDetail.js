@@ -15,8 +15,8 @@ const ProductDetail = (props) => {
   const [salesRepresentative, setSalesRepresentativeValue] = useState('');
   const [manufacturerContact, setManufacturerContactValue] = useState('');
 
-  const srCols = ['Name','Phone','Email','Web']
-  const mcCols = ['Department','Phone','Email','Web']
+  const srCols = ['Name', 'Phone', 'Email', 'Web']
+  const mcCols = ['Department', 'Phone', 'Email', 'Web']
 
   // get productDetailValue
   axios.get('http://localhost:3000' + product.productDetail)
@@ -59,15 +59,15 @@ const ProductDetail = (props) => {
         <div><Button variant="contained" color="primary">Add to</Button></div>
       </div>
       <div style={{ border: '1px solid lightgrey' }}>
-        <Button onClick={''} style={{ border: '1px solid lightgrey' }}>Product Summary</Button>
-        <Button onClick={''} style={{ border: '1px solid lightgrey' }}>Product Detail</Button>
-        <Button onClick={''} style={{ border: '1px solid lightgrey' }}>Product Documentation</Button>
-        <Button onClick={''} style={{ border: '1px solid lightgrey' }}>Contact</Button>
+        <a href='#ProductSummary' style={{textDecoration: 'none'}}><Button style={{ border: '1px solid lightgrey' }}>Product Summary</Button></a>
+        <a href='#ProductDetail' style={{textDecoration: 'none'}}><Button onClick={''} style={{ border: '1px solid lightgrey' }}>Product Detail</Button></a>
+        <a href='#ProductDocumentation' style={{textDecoration: 'none'}}><Button onClick={''} style={{ border: '1px solid lightgrey' }}>Product Documentation</Button></a>
+        <a href='#Contact' style={{textDecoration: 'none'}}><Button onClick={''} style={{ border: '1px solid lightgrey' }}>Contact</Button></a>
       </div>
 
       <div className={styles.detailTable}>
 
-        <div className={styles.title}>Product Summary</div>
+        <div id='ProductSummary' className={styles.title}>Product Summary</div>
         <div className={styles.oneLine}>
           <div style={{ width: '50%' }}>
             <div className={styles.subTitle}>DESCRIPTION</div>
@@ -95,7 +95,7 @@ const ProductDetail = (props) => {
           </div>
         </div>
 
-        <div className={styles.title}>Product Details</div>
+        <div id='ProductDetail' className={styles.title}>Product Details</div>
         <div className={styles.subTitle}>SERIES INFORMATION</div>
         <div>{productDetailValue.toString().split('\n').map(
           (line, index) => {
@@ -104,7 +104,7 @@ const ProductDetail = (props) => {
           }
         )}</div>
 
-        <div className={styles.title}>Product Documentation</div>
+        <div id='ProductDocumentation' className={styles.title}>Product Documentation</div>
         <GridList cellHeight={80} cols={4}>
           <GridListTile cols={2}>
             <div className={styles.oneLine}>
@@ -126,7 +126,7 @@ const ProductDetail = (props) => {
           </GridListTile>
         </GridList>
 
-        <div className={styles.title}>Contact</div>
+        <div id='Contact' className={styles.title}>Contact</div>
         <div className={styles.oneLine}>
           <div style={{ width: '50%' }}>
             <div className={styles.subTitle}>SALES REPRESENTATIVE</div>

@@ -168,6 +168,7 @@ class ProductPage extends Component {
   componentDidMount() {
 
     let URL = 'http://localhost:8080/api/products';
+    console.log(this.props);
     let productLineFk = this.props.match.params.productLineFk;
     if (productLineFk) {
       URL += '/search/findByProductLineFk?theFk=' + productLineFk;
