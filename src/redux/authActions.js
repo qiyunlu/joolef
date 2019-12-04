@@ -1,3 +1,5 @@
-export const login = (jwt) => ({type: 'LOGIN', JWT: jwt});
+export const login = (jwt) => ({type: 'Login', JWT: jwt});
 
-export const logout = () => ({type: 'LOGOUT'});
+export const logout = () => ({type: 'Logout'});
+
+export const setStore = (payload) => ({type: 'SetStore', payload: payload});

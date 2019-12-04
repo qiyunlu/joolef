@@ -3,8 +3,12 @@ import Slider from '@material-ui/core/Slider';
 import styles from './SideBar.module.css';
 
 import FindFans from '../FindFans/FindFans';
+import { useSelector, useDispatch } from 'react-redux';
 
 const SideBar = (props) => {
+  const store = useSelector(state => ({ ...state }));
+  const dispatch = useDispatch();
+
   // state
   const [modelYearValue, setModelYearValue] = React.useState([1970, 2019]);
   const [airflowValue, setAirflowValue] = React.useState([2000, 10000]);
@@ -37,8 +41,8 @@ const SideBar = (props) => {
     <div className={styles.SideBar}>
       <div style={{ display: 'flex' }}>
         <p>Search: </p>
-        <button onClick={() => props.updateSearchParas('','','','',modelYearValue,airflowValue,maxPowerValue,maxSoundValue,
-            sweepDiameterValue,['',''],firmValue,globalValue,'')}
+        <button onClick={() => props.updateSearchParas('', '', '', '', modelYearValue, airflowValue, maxPowerValue, maxSoundValue,
+          sweepDiameterValue, ['', ''], firmValue, globalValue, '')}
         >save</button>
         <button onClick={() => props.clearSearchParas(props.setState)}>clear</button>
       </div>
@@ -46,16 +50,16 @@ const SideBar = (props) => {
       <div className={styles.title}>Product Type</div>
       <div className={styles.para}>
         <div>Model year:</div>
-        <input size='1' value={modelYearValue[0]} onChange={(event)=>setModelYearValue([+event.target.value,modelYearValue[1]])}/>
+        <input size='1' value={modelYearValue[0]} onChange={(event) => setModelYearValue([+event.target.value, modelYearValue[1]])} />
         {'-'}
-        <input size='1' value={modelYearValue[1]} onChange={(event)=>setModelYearValue([modelYearValue[0],+event.target.value])}/>
+        <input size='1' value={modelYearValue[1]} onChange={(event) => setModelYearValue([modelYearValue[0], +event.target.value])} />
       </div>
 
       <div className={styles.title}>Technical Specifications</div>
       <div>
         <div>Airflow (CFM)</div>
         <div className={styles.para}>
-          <input size='1' value={airflowValue[0]} onChange={(event)=>setAirflowValue([+event.target.value,airflowValue[1]])} />
+          <input size='1' value={airflowValue[0]} onChange={(event) => setAirflowValue([+event.target.value, airflowValue[1]])} />
           <Slider
             value={airflowValue}
             min={2000}
@@ -65,11 +69,11 @@ const SideBar = (props) => {
             aria-labelledby="range-slider"
             getAriaValueText={valuetext}
           />
-          <input size='1' value={airflowValue[1]} onChange={(event)=>setAirflowValue([airflowValue[0],+event.target.value])} />
+          <input size='1' value={airflowValue[1]} onChange={(event) => setAirflowValue([airflowValue[0], +event.target.value])} />
         </div>
         <div>Max power (W)</div>
         <div className={styles.para}>
-          <input size='1' value={maxPowerValue[0]} onChange={(event)=>setMaxPowerValue([+event.target.value,maxPowerValue[1]])} />
+          <input size='1' value={maxPowerValue[0]} onChange={(event) => setMaxPowerValue([+event.target.value, maxPowerValue[1]])} />
           <Slider
             value={maxPowerValue}
             min={0}
@@ -79,11 +83,11 @@ const SideBar = (props) => {
             aria-labelledby="range-slider"
             getAriaValueText={valuetext}
           />
-          <input size='1' value={maxPowerValue[1]} onChange={(event)=>setMaxPowerValue([maxPowerValue[0],+event.target.value])} />
+          <input size='1' value={maxPowerValue[1]} onChange={(event) => setMaxPowerValue([maxPowerValue[0], +event.target.value])} />
         </div>
         <div>Sound at max speed (dBA)</div>
         <div className={styles.para}>
-          <input size='1' value={maxSoundValue[0]} onChange={(event)=>setMaxSoundValue([+event.target.value,maxSoundValue[1]])} />
+          <input size='1' value={maxSoundValue[0]} onChange={(event) => setMaxSoundValue([+event.target.value, maxSoundValue[1]])} />
           <Slider
             value={maxSoundValue}
             min={0}
@@ -93,11 +97,11 @@ const SideBar = (props) => {
             aria-labelledby="range-slider"
             getAriaValueText={valuetext}
           />
-          <input size='1' value={maxSoundValue[1]} onChange={(event)=>setMaxSoundValue([maxSoundValue[0],+event.target.value])} />
+          <input size='1' value={maxSoundValue[1]} onChange={(event) => setMaxSoundValue([maxSoundValue[0], +event.target.value])} />
         </div>
         <div>Fan sweep diameter (in)</div>
         <div className={styles.para}>
-          <input size='1' value={sweepDiameterValue[0]} onChange={(event)=>setSweepDiameterValue([+event.target.value,sweepDiameterValue[1]])} />
+          <input size='1' value={sweepDiameterValue[0]} onChange={(event) => setSweepDiameterValue([+event.target.value, sweepDiameterValue[1]])} />
           <Slider
             value={sweepDiameterValue}
             min={0}
@@ -107,7 +111,7 @@ const SideBar = (props) => {
             aria-labelledby="range-slider"
             getAriaValueText={valuetext}
           />
-          <input size='1' value={sweepDiameterValue[1]} onChange={(event)=>setSweepDiameterValue([sweepDiameterValue[0],+event.target.value])} />
+          <input size='1' value={sweepDiameterValue[1]} onChange={(event) => setSweepDiameterValue([sweepDiameterValue[0], +event.target.value])} />
         </div>
       </div>
 
@@ -115,7 +119,7 @@ const SideBar = (props) => {
       <div>
         <div>Firm</div>
         <div className={styles.para}>
-          <input size='1' value={firmValue[0]} onChange={(event)=>setFirmValue([+event.target.value,firmValue[1]])} />
+          <input size='1' value={firmValue[0]} onChange={(event) => setFirmValue([+event.target.value, firmValue[1]])} />
           <Slider
             value={firmValue}
             min={0}
@@ -125,11 +129,11 @@ const SideBar = (props) => {
             aria-labelledby="range-slider"
             getAriaValueText={valuetext}
           />
-          <input size='1' value={firmValue[1]} onChange={(event)=>setFirmValue([firmValue[0],+event.target.value])} />
+          <input size='1' value={firmValue[1]} onChange={(event) => setFirmValue([firmValue[0], +event.target.value])} />
         </div>
         <div>Global</div>
         <div className={styles.para}>
-          <input size='1' value={globalValue[0]} onChange={(event)=>setGlobalValue([+event.target.value,globalValue[1]])} />
+          <input size='1' value={globalValue[0]} onChange={(event) => setGlobalValue([+event.target.value, globalValue[1]])} />
           <Slider
             value={globalValue}
             min={0}
@@ -139,13 +143,13 @@ const SideBar = (props) => {
             aria-labelledby="range-slider"
             getAriaValueText={valuetext}
           />
-          <input size='1' value={globalValue[1]} onChange={(event)=>setGlobalValue([globalValue[0],+event.target.value])} />
+          <input size='1' value={globalValue[1]} onChange={(event) => setGlobalValue([globalValue[0], +event.target.value])} />
         </div>
       </div>
 
       <div className={styles.title}>Advance Search</div>
       <div><FindFans yu='aa' /></div>
-      
+
     </div>
   );
 }

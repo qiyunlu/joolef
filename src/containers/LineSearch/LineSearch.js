@@ -41,7 +41,7 @@ class LineSearch extends Component {
           renderInput={params => (
             <TextField {...params} label="search..." variant="outlined" fullWidth />
           )}
-          onChange={(event, value) => this.setState({ chosen: value['productLineId'], chosenName: value['productLineName'] })}
+          onChange={(event, value) => this.setState({ chosen: value ? value['productLineId']: 0, chosenName: value ? value['productLineName']: '' })}
         />
         <Link to={location => (
           {
