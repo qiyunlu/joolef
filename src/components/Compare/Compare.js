@@ -53,7 +53,7 @@ const Compare = (props) => {
                 <div style={{ width: '300px', height: '30px', border: '1px solid lightgrey', textAlign: 'center' }}>{product['productUseType']}</div>
                 <div style={{ width: '300px', height: '30px', border: '1px solid lightgrey', textAlign: 'center' }}>{product['productApplication']}</div>
                 <div style={{ width: '300px', height: '30px', border: '1px solid lightgrey', textAlign: 'center' }}>{product['productMountingLocation']}</div>
-                <div style={{ width: '300px', height: '30px', border: '1px solid lightgrey', textAlign: 'center' }}>{product['productMountingLocation']}</div>
+                <div style={{ width: '300px', height: '30px', border: '1px solid lightgrey', textAlign: 'center' }}>{product['productAccessories']}</div>
                 <div style={{ width: '300px', height: '30px', border: '1px solid lightgrey', textAlign: 'center' }}>{product['productModelYear']}</div>
                 <div style={{ width: '300px', height: '30px', border: '1px solid grey' }}></div>
                 <div style={{ width: '300px', height: '30px', border: '1px solid lightgrey', textAlign: 'center' }}>{product['productAirflow']}</div>

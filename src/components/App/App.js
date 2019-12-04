@@ -3,12 +3,11 @@ import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import './App.css';
-import LineSearch from '../../containers/LineSearch/LineSearch';
 import ProductPage from '../../containers/ProductPage/ProductPage';
 import SummaryPage from '../../containers/SummaryPage/SummaryPage';
 import Compare from '../Compare/Compare';
 import Login from '../Login/Login';
-
+import SelectLine from '../SelectLine/SelectLine';
 
 const App = () => {
 
@@ -41,7 +40,7 @@ const App = () => {
     <BrowserRouter>
       <div className="App">
         <Route path='/login' component={Login} />
-        <PrivateRoute path='/lineSearch' exact><LineSearch /></PrivateRoute>
+        <PrivateRoute path='/selectLine' exact><SelectLine /></PrivateRoute>
         <Route path='/productPage/:productLineFk' exact component={ProductPage} />
         <Route path='/productPage' exact component={ProductPage} />
         <Route path='/summaryPage/:productId' exact component={SummaryPage} />

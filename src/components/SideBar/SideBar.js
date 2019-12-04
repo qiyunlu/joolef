@@ -144,7 +144,7 @@ const SideBar = (props) => {
       </div>
 
       <div className={styles.title}>Advance Search</div>
-      <div><FindFans /></div>
+      <div><FindFans yu='aa' /></div>
       
     </div>
   );

@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import Radio from '@material-ui/core/Radio';
 
 //for dialog
-function FindFans() {
+const FindFans = (props) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -17,13 +17,12 @@ function FindFans() {
   };
 
   // for radio button
-  const [selectedValue, setSelectedValue] = React.useState('a');
-
-  const handleChange = event => {
-    setSelectedValue(event.target.value);
+  const [useTypeValue, setUseTypeValue] = React.useState('');
+  const handleUseTypeChange = event => {
+    setUseTypeValue(event.target.value);
   };
 
-
+  console.log(props.state);
   return (
     <React.Fragment>
       <button onClick={handleClickOpen}>Find fans</button>
@@ -45,28 +44,28 @@ function FindFans() {
           <div style={{ display: 'flex', marginTop: '10px' }}>
             <div style={{ color: "black", marginRight: "20%", marginTop: "1.5%" }}>Use Type</div>
             <Radio
-              checked={selectedValue === 'a'}
-              onChange={handleChange}
-              value="a"
+              checked={useTypeValue === 'Commercial'}
+              onChange={handleUseTypeChange}
+              value="Commercial"
               color="default"
               name="radio-button-demo"
-              inputProps={{ 'aria-label': 'A' }}
+              inputProps={{ 'aria-label': 'Commercial' }}
             /><span style={{ marginTop: "1.5%" }}>Commercial</span>
             <Radio
-              checked={selectedValue === 'b'}
-              onChange={handleChange}
-              value="b"
+              checked={useTypeValue === 'Industrial'}
+              onChange={handleUseTypeChange}
+              value="Industrial"
               color="default"
               name="radio-button-demo"
-              inputProps={{ 'aria-label': 'B' }}
+              inputProps={{ 'aria-label': 'Industrial' }}
             /><span style={{ marginTop: "1.5%" }}>Industrial</span>
             <Radio
-              checked={selectedValue === 'c'}
-              onChange={handleChange}
-              value="c"
+              checked={useTypeValue === 'Residential'}
+              onChange={handleUseTypeChange}
+              value="Residential"
               color="default"
               name="radio-button-demo"
-              inputProps={{ 'aria-label': 'C' }}
+              inputProps={{ 'aria-label': 'Residential' }}
             /><span style={{ marginTop: "1.5%" }}>Residential</span>
           </div>
           <div style={{ display: 'flex', marginTop: '10px' }}>

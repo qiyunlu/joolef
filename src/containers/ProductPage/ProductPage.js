@@ -198,7 +198,7 @@ class ProductPage extends Component {
   }
 
   render() {
-
+    
     // start filtering
     var pts = [...this.state.products];
     var searchParas = { ...this.state.searchParas };
@@ -217,7 +217,7 @@ class ProductPage extends Component {
           updateSearchParas={this.updateSearchParas}
           clearSearchParas={this.clearSearchParas}
         />
-        <Products products={pts} />
+        <Products products={pts} url={this.props.location.query} />
       </div>
     );
   }

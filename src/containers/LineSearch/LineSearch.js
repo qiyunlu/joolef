@@ -9,7 +9,8 @@ import styles from './LineSearch.module.css';
 class LineSearch extends Component {
   state = {
     productLines: [],
-    chosen: 1
+    chosen: 0,
+    chosenName: ''
   };
 
   componentDidMount() {
@@ -34,15 +35,22 @@ class LineSearch extends Component {
       <div className={styles.LineSearch}>
         <Autocomplete
           id="line-search"
-          style={{width:'50%', marginLeft:'20%'}}
+          style={{ width: '50%', marginLeft: '20%' }}
           options={this.state.productLines}
           getOptionLabel={option => option['productLineName']}
           renderInput={params => (
             <TextField {...params} label="search..." variant="outlined" fullWidth />
           )}
+          onChange={(event, value) => this.setState({ chosen: value['productLineId'], chosenName: value['productLineName'] })}
         />
-        <Link to={'/productPage/'+this.state.chosen}>
-          <button style={{marginTop:'15px'}}>Search</button>
+        <Link to={location => (
+          {
+            ...location,
+            pathname: '/productPage/' + this.state.chosen,
+            query: this.state.chosenName
+          }
+        )}>
+          <button style={{ marginTop: '15px' }}>Search</button>
         </Link>
       </div>
     );

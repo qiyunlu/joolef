@@ -16,7 +16,7 @@ const Products = (props) => {
 
   const [checkedState, setCheckedState] = React.useState({});
   const handleCheckedChange = (productId, product) => {
-    let _cs = {...checkedState};
+    let _cs = { ...checkedState };
     if (_cs.hasOwnProperty(productId)) {
       delete _cs[productId];
       setCheckedState(_cs);
@@ -29,12 +29,12 @@ const Products = (props) => {
   return (
 
     <div className={styles.Products}>
-      <div>Mechanical > HVAC Fans</div>
+      <div>{'Mechanical > '+props.url}</div>
       <Link to={location => (
         {
           ...location,
           pathname: "/compare",
-          query: {...checkedState}
+          query: { ...checkedState }
         }
       )}><button>Go Compare</button></Link>
       <GridList cellHeight={450} cols={4}>
@@ -43,10 +43,10 @@ const Products = (props) => {
           <GridListTile key={product.productId} cols={1}>
             <Card className={styles.card}>
               <div style={{ fontSize: 10 }}>{"Verified " + product.productModelVerifiedTime}</div>
-              <Link to={'/SummaryPage/'+product.productId}>
+              <Link to={'/SummaryPage/' + product.productId}>
                 <CardMedia
                   style={{ paddingTop: '30%' }}
-                  image={process.env.PUBLIC_URL+product.productPicture}
+                  image={process.env.PUBLIC_URL + product.productPicture}
                 />
               </Link>
               <CardContent>
