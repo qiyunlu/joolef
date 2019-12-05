@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import { useSelector, connect } from 'react-redux';
 
 import './App.css';
@@ -26,14 +26,16 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <div className="App">
-        <Route path='/login' component={Login} />
-        <PrivateRoute path='/selectLine' exact component={SelectLine} />
-        <PrivateRoute path='/productPage/:productLineFk' exact component={ProductPage} />
-        <PrivateRoute path='/productPage' exact component={ProductPage} />
-        <PrivateRoute path='/summaryPage/:productId' exact component={SummaryPage} />
-        <PrivateRoute path='/compare' exact component={Compare} />
-        {/* <Redirect from='/' to='/login' /> */}
-        {/* <Route path='/' render={() => <Redirect  pato="/login" />} /> */}
+        <Switch>
+          <Route path='/login' component={Login} />
+          <PrivateRoute path='/selectLine' exact component={SelectLine} />
+          <PrivateRoute path='/productPage/:productLineFk' exact component={ProductPage} />
+          <PrivateRoute path='/productPage' exact component={ProductPage} />
+          <PrivateRoute path='/summaryPage/:productId' exact component={SummaryPage} />
+          <PrivateRoute path='/compare' exact component={Compare} />
+          {/* <Redirect from='/' to='/login' /> */}
+          <Route path='/' render={() => <Redirect  pato="/login" />} />
+        </Switch>
       </div>
     </BrowserRouter>
   );
