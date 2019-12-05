@@ -4,9 +4,15 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import Radio from '@material-ui/core/Radio';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { setStore } from '../../redux/authActions';
 
 //for dialog
 const FindFans = (props) => {
+  const store = useSelector(state => ({ ...state.searchParas }));
+  const dispatch = useDispatch();
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -17,9 +23,37 @@ const FindFans = (props) => {
   };
 
   // for radio button
-  const [useTypeValue, setUseTypeValue] = React.useState('');
   const handleUseTypeChange = event => {
-    setUseTypeValue(event.target.value);
+    dispatch(setStore({
+      searchParas: {
+        ...store,
+        useType: event.target.value
+      }
+    }));
+  };
+  const handleApplicationChange = event => {
+    dispatch(setStore({
+      searchParas: {
+        ...store,
+        application: event.target.value
+      }
+    }));
+  };
+  const handleMountingLocationChange = event => {
+    dispatch(setStore({
+      searchParas: {
+        ...store,
+        mountingLocation: event.target.value
+      }
+    }));
+  };
+  const handleAccessoriesChange = event => {
+    dispatch(setStore({
+      searchParas: {
+        ...store,
+        accessories: event.target.value
+      }
+    }));
   };
 
   console.log(props.state);
@@ -41,10 +75,11 @@ const FindFans = (props) => {
           <div className="typeheader" style={{ backgroundColor: "lightgrey" }}>
             <span>Type</span>
           </div>
+
           <div style={{ display: 'flex', marginTop: '10px' }}>
             <div style={{ color: "black", marginRight: "20%", marginTop: "1.5%" }}>Use Type</div>
             <Radio
-              checked={useTypeValue === 'Commercial'}
+              checked={store.useType === 'Commercial'}
               onChange={handleUseTypeChange}
               value="Commercial"
               color="default"
@@ -52,7 +87,7 @@ const FindFans = (props) => {
               inputProps={{ 'aria-label': 'Commercial' }}
             /><span style={{ marginTop: "1.5%" }}>Commercial</span>
             <Radio
-              checked={useTypeValue === 'Industrial'}
+              checked={store.useType === 'Industrial'}
               onChange={handleUseTypeChange}
               value="Industrial"
               color="default"
@@ -60,7 +95,7 @@ const FindFans = (props) => {
               inputProps={{ 'aria-label': 'Industrial' }}
             /><span style={{ marginTop: "1.5%" }}>Industrial</span>
             <Radio
-              checked={useTypeValue === 'Residential'}
+              checked={store.useType === 'Residential'}
               onChange={handleUseTypeChange}
               value="Residential"
               color="default"
@@ -68,13 +103,84 @@ const FindFans = (props) => {
               inputProps={{ 'aria-label': 'Residential' }}
             /><span style={{ marginTop: "1.5%" }}>Residential</span>
           </div>
+
+          <div style={{ display: 'flex', marginTop: '10px' }}>
+            <div style={{ color: "black", marginRight: "20%", marginTop: "1.5%" }}>Application</div>
+            <Radio
+              checked={store.application === 'Indoor'}
+              onChange={handleApplicationChange}
+              value="Indoor"
+              color="default"
+              name="radio-button-demo"
+              inputProps={{ 'aria-label': 'Indoor' }}
+            /><span style={{ marginTop: "1.5%" }}>Indoor</span>
+            <Radio
+              checked={store.application === 'Outdoor'}
+              onChange={handleApplicationChange}
+              value="Outdoor"
+              color="default"
+              name="radio-button-demo"
+              inputProps={{ 'aria-label': 'Outdoor' }}
+            /><span style={{ marginTop: "1.5%" }}>Outdoor</span>
+          </div>
+
+          <div style={{ display: 'flex', marginTop: '10px' }}>
+            <div style={{ color: "black", marginRight: "20%", marginTop: "1.5%" }}>Mounting Location</div>
+            <Radio
+              checked={store.mountingLocation === 'Roof'}
+              onChange={handleMountingLocationChange}
+              value="Roof"
+              color="default"
+              name="radio-button-demo"
+              inputProps={{ 'aria-label': 'Roof' }}
+            /><span style={{ marginTop: "1.5%" }}>Roof</span>
+            <Radio
+              checked={store.mountingLocation === 'Wall'}
+              onChange={handleMountingLocationChange}
+              value="Wall"
+              color="default"
+              name="radio-button-demo"
+              inputProps={{ 'aria-label': 'Wall' }}
+            /><span style={{ marginTop: "1.5%" }}>Wall</span>
+            <Radio
+              checked={store.mountingLocation === 'Free standing'}
+              onChange={handleMountingLocationChange}
+              value="Free standing"
+              color="default"
+              name="radio-button-demo"
+              inputProps={{ 'aria-label': 'Free standing' }}
+            /><span style={{ marginTop: "1.5%" }}>Free standing</span>
+          </div>
+
+          <div style={{ display: 'flex', marginTop: '10px' }}>
+            <div style={{ color: "black", marginRight: "20%", marginTop: "1.5%" }}>Accessories</div>
+            <Radio
+              checked={store.accessories === 'With light'}
+              onChange={handleAccessoriesChange}
+              value="With light"
+              color="default"
+              name="radio-button-demo"
+              inputProps={{ 'aria-label': 'With light' }}
+            /><span style={{ marginTop: "1.5%" }}>With light</span>
+            <Radio
+              checked={store.accessories === 'Without light'}
+              onChange={handleAccessoriesChange}
+              value="Without light"
+              color="default"
+              name="radio-button-demo"
+              inputProps={{ 'aria-label': 'Without light' }}
+            /><span style={{ marginTop: "1.5%" }}>Without light</span>
+          </div>
+
           <div style={{ display: 'flex', marginTop: '10px' }}>
             <div style={{ color: "black", marginRight: "20%" }}>Model year</div>
             <input type="number" id="tentacles" name="tentacles"
-              min="2000" max="2200" />
+              min="1970" max="2019" value={store.modelYearMin}
+              onChange={(event) => dispatch(setStore({searchParas: {...store,modelYearMin: event.target.value}}))}/>
             <span>--</span>
             <input type="number" id="tentacles" name="tentacles"
-              min="2000" max="2200" />
+              min="1970" max="2019"  value={store.modelYearMax}
+              onChange={(event) => dispatch(setStore({searchParas: {...store,modelYearMax: event.target.value}}))}/>
           </div>
 
           <div className="TDheader" style={{ backgroundColor: "lightgrey", marginTop: "2%" }}>

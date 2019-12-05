@@ -4,9 +4,10 @@ import styles from './SideBar.module.css';
 
 import FindFans from '../FindFans/FindFans';
 import { useSelector, useDispatch } from 'react-redux';
+import { setStore } from '../../redux/authActions';
 
 const SideBar = (props) => {
-  const store = useSelector(state => ({ ...state }));
+  const store = useSelector(state => ({ ...state.searchParas }));
   const dispatch = useDispatch();
 
   // state
@@ -41,10 +42,57 @@ const SideBar = (props) => {
     <div className={styles.SideBar}>
       <div style={{ display: 'flex' }}>
         <p>Search: </p>
-        <button onClick={() => props.updateSearchParas('', '', '', '', modelYearValue, airflowValue, maxPowerValue, maxSoundValue,
-          sweepDiameterValue, ['', ''], firmValue, globalValue, '')}
-        >save</button>
-        <button onClick={() => props.clearSearchParas(props.setState)}>clear</button>
+        <button onClick={() => {
+          props.updateSearchParas('', '', '', '', modelYearValue, airflowValue, maxPowerValue, maxSoundValue,
+            sweepDiameterValue, ['', ''], firmValue, globalValue, '');
+          dispatch(setStore({
+            searchParas: {
+              ...store,
+              modelYearMin: modelYearValue[0],
+              modelYearMax: modelYearValue[1],
+              airflowMin: airflowValue[0],
+              airflowMax: airflowValue[1],
+              maxPowerMin: maxPowerValue[0],
+              maxPowerMax: maxPowerValue[1],
+              maxSoundMin: maxSoundValue[0],
+              maxSoundMax: maxSoundValue[1],
+              sweepDiameterMin: sweepDiameterValue[0],
+              sweepDiameterMax: sweepDiameterValue[1],
+              firmMin: firmValue[0],
+              firmMax: firmValue[1],
+              globalMin: globalValue[0],
+              globalMax: globalValue[1]
+            }
+          }));
+        }}>save</button>
+        <button onClick={() => {
+          props.clearSearchParas(props.setState);
+          dispatch(setStore({
+            searchParas: {
+              useType: '',
+              application: '',
+              mountingLocation: '',
+              accessories: '',
+              modelYearMin: '',
+              modelYearMax: '',
+              airflowMin: '',
+              airflowMax: '',
+              maxPowerMin: '',
+              maxPowerMax: '',
+              maxSoundMin: '',
+              maxSoundMax: '',
+              sweepDiameterMin: '',
+              sweepDiameterMax: '',
+              heightMin: '',
+              heightMax: '',
+              firmMin: '',
+              firmMax: '',
+              globalMin: '',
+              globalMax: '',
+              brand: ''
+            }
+          }));
+        }}>clear</button>
       </div>
 
       <div className={styles.title}>Product Type</div>
