@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
-import { useSelector, connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 import './App.css';
 import ProductPage from '../../containers/ProductPage/ProductPage';
@@ -33,8 +33,7 @@ const App = (props) => {
           <PrivateRoute path='/productPage' exact component={ProductPage} />
           <PrivateRoute path='/summaryPage/:productId' exact component={SummaryPage} />
           <PrivateRoute path='/compare' exact component={Compare} />
-          {/* <Redirect from='/' to='/login' /> */}
-          <Route path='/' render={() => <Redirect  pato="/login" />} />
+          <Redirect from='' to='/login' />
         </Switch>
       </div>
     </BrowserRouter>

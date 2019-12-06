@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from '../../Interceptor/Interceptor';
-import { useSelector, useDispatch } from 'react-redux';
 
 import SideBar from '../../components/SideBar/SideBar';
 import HeadBar from '../../components/HeadBar/HeadBar';
@@ -178,9 +177,9 @@ class ProductPage extends Component {
       productLineFk = '';
     }
 
-    axios.get(URL)
+    axios.get(URL,null,{headers: {'token': 'hahaha'}})
       .then(response => {
-
+        console.log(response);
         const datas = response['data']['_embedded']['products'];
         if (datas) {
           let pts = [];

@@ -2,6 +2,8 @@ const initialState = {
 
   authenticated: true,
   JWT: null,
+  userId: null,
+  error: null,
 
   productLines: [],
   chosen: 0,
@@ -56,6 +58,21 @@ const authReducer = (state = initialState, action) => {
       return {
         ..._state,
         ...action.payload
+      };
+    case 'AuthSuccess':
+      return {
+        ..._state,
+        authenticated: true,
+        JWT: action.token,
+        userId: action.userId,
+        error: null
+      };
+    case 'AuthFail':
+      return {
+        ..._state,
+        authenticated: false,
+        error: action.error,
+        userId: null
       };
     default: { }
   }
